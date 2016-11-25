@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import pageobject.LoginPage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -21,35 +22,16 @@ public class TestStepDefinitions {
 
 	static WebDriver driver;
 
-	@Before
-	public static void setUp() {
-		System.setProperty("webdriver.chrome.driver",
-				"/Users/venuancha/Downloads/chromedriver");
-		driver = new ChromeDriver();
-	}
-
-	@After
-	public static void tearDown() {
-		driver.quit();
-	}
-
 	@Given("^I login to Hotel Management Platform$")
 	public void loginToHM() throws InterruptedException {
-		driver.navigate().to("localhost:3003");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//a[contains(text(),'Login')]")).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("admin");
-		driver.findElement(By.xpath("//*[@id='password']"))
-				.sendKeys("password");
-		driver.findElement(By.xpath("//*[@id='doLogin']")).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
 	}
 
 	@When("^I create a entry with details as \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void createEntryWithDetails(String hotelName, String address,
 			String owner, String phoneno, String email) throws Throwable {
+
+		driver = WebDriverSingletonClass.instantiateWebDriverInstance();
 		driver.findElement(By.xpath("//input[@id='hotelName']")).sendKeys(
 				hotelName);
 		driver.findElement(By.xpath("//input[@id='address']"))
