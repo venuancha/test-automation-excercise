@@ -15,7 +15,8 @@ public class WebDriverSingletonClass {
 
 		if (driver == null) {
 			System.setProperty("webdriver.chrome.driver",
-					"/Users/venuancha/Downloads/chromedriver");
+					System.getProperty("user.dir")
+							+ "/src/test/resources/chromedriver");
 			driver = new ChromeDriver();
 		}
 

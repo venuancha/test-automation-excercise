@@ -20,11 +20,19 @@ public class TestStepDefinitions {
 
 	static Logger log = Logger.getLogger(TestStepDefinitions.class.getName());
 
+	LoginPage loginPage;
+
 	static WebDriver driver;
 
-	@Given("^I login to Hotel Management Platform$")
-	public void loginToHM() throws InterruptedException {
+	public TestStepDefinitions() {
+		loginPage = new LoginPage();
+	}
 
+	@Given("^I already loggedin to Hotel Management Platform$")
+	public void loginToHM() throws InterruptedException {
+		// This verifies the logout link is present on the page, which inturn
+		// verifies that we already loggedin
+		Assert.assertTrue(loginPage.isLogoutLinkPresent());
 	}
 
 	@When("^I create a entry with details as \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")

@@ -27,12 +27,23 @@ public class LoginPage {
 	WebElement password;
 	@FindBy(xpath = "//*[@id='doLogin']")
 	WebElement loginButton;
+	@FindBy(xpath = "//a[contains(text(),'Logout')]")
+	WebElement logoutLink;
 
 	public void login(String userName, String pass) {
 		loginLink.click();
 		username.sendKeys(userName);
 		password.sendKeys(pass);
 		loginButton.click();
+	}
+
+	public boolean isLogoutLinkPresent() {
+
+		if (logoutLink.isDisplayed()) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
