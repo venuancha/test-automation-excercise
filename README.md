@@ -17,7 +17,7 @@ mvn clean test
 - OR
 
 ```
-From CucumberRunnerTest class, right click and run as Junit test
+From CucumberRunnerTest class, right click and run as Junit test(But for this please make sure project is compiled and build properly in Eclipse)
 ```
 
 
